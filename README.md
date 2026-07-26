@@ -1,4 +1,16 @@
-# Hydron
+<div align="center">
+    <img src=".public/logo.svg">
+</div>
+
+<h1 align="center">Hydron</h1>
+
+<div align="center">
+
+![Go](https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white)
+
+</div>
+
+---  
 
 A lightweight, high-throughput traffic generation tool built in Go. Designed to test target servers, custom firewalls, and reverse proxies using rate-limiting, concurrency pools, and header-based client IP simulation.
 
