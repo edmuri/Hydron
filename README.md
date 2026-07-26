@@ -1,8 +1,10 @@
-<!-- <div align="center">
+<div align="center">
     <img src=".public/logo.svg">
-</div> -->
+</div>
 
-<h1 align="center">Hydron</h1>
+
+--- 
+<!-- <h1 align="center">Hydron</h1> -->
 
 <div align="center">
 
