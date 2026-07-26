@@ -1,42 +1,24 @@
 package main
 
 import (
-	"fmt"
-	"net"
-	"os"
+	"context"
+	"time"
+
+	"main/hydron"
 )
 
-func setup_packet() {
-	ip := "127.0.0.1"
-	conn, err := net.Dial("udp", ip)
-
-	if err != nil {
-		fmt.Printf("[!] Failed to connected to address: %v\n", err)
-	}
-	defer conn.Close()
-
-	payload := []byte("Hello")
-
-	_, err = conn.Write(payload)
-
-	if err != nil {
-		fmt.Println("[!] Error sending packet:", err)
-		return
-	}
-	fmt.Println("[-] Packet sent successfully!")
-}
-
 func main() {
-	if len(os.Args) < 2 {
-		fmt.Println("[!] Not enough arguments")
-		return
-	}
 
-	args := os.Args[1:]
+	configs := hydron.Create_packetjob(
+		"127.0.0.1",
+		"127.0.0.1",
+		333,
+		5,
+		100,
+		10*time.Second,
+		true)
 
-	status := verifyArgs(args)
+	hydron := hydron.Hydron_Creator(*configs)
+	hydron.Run(context.Background())
 
-	fmt.Println(status)
-	fmt.Println(args)
-	setup_packet()
 }
