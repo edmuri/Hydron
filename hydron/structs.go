@@ -5,10 +5,17 @@ import (
 	"time"
 )
 
+type Result struct {
+	StatusCode int
+	Duration   time.Duration
+	Err        error
+}
+
 type PacketJob struct {
 	src         string
 	dst         string
 	port        int
+	path        string
 	workers     int
 	requests    int
 	duration    time.Duration

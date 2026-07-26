@@ -12,10 +12,11 @@ func main() {
 	configs := hydron.Create_packetjob(
 		"127.0.0.1",
 		"127.0.0.1",
-		333,
+		8080,
+		"/",
 		5,
-		100,
-		10*time.Second,
+		10,
+		3*time.Second,
 		true)
 
 	hydron := hydron.Hydron_Creator(*configs)

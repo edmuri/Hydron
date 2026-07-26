@@ -22,6 +22,7 @@ func Create_packetjob(
 	src string,
 	dest string,
 	prt int,
+	path string,
 	wrkrs int,
 	reqs int,
 	dur time.Duration,
@@ -30,6 +31,7 @@ func Create_packetjob(
 		src:         src,
 		dst:         dest,
 		port:        prt,
+		path:        path,
 		workers:     wrkrs,
 		requests:    reqs,
 		duration:    dur,
@@ -62,7 +64,7 @@ func (hydron *Hydron) run_request(
 
 	defer wait_group.Done()
 
-	target := fmt.Sprintf("%s:%d", hydron.config.dst, hydron.config.port)
+	target := fmt.Sprintf("http://%s:%d%s", hydron.config.dst, hydron.config.port, hydron.config.path)
 
 	for range jobs {
 		req, err := http.NewRequestWithContext(ctx, http.MethodGet, target, nil)
@@ -113,7 +115,7 @@ func (hydron *Hydron) Run(ctx context.Context) {
 		}
 	}()
 
-	ticker := time.NewTicker(time.Second / time.Duration(hydron.config.duration))
+	ticker := time.NewTicker(time.Second / time.Duration(hydron.config.requests))
 	defer ticker.Stop()
 
 	stopTimer := time.NewTimer(hydron.config.duration)
